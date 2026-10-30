@@ -4,6 +4,8 @@
 
 工程采用普通类、JavaBean 数据对象、具名回调和 JDK 线程池。Kotlin 与 Java 都可以直接接入，不需要协程或响应式库；每个文件仅声明一个具名类型。工程约定见 [AGENTS.md](AGENTS.md)。
 
+面向业务研发、模型适配和工具能力提供方的完整说明见 [Agent Core 接入指南](docs/INTEGRATION.md)，包含 Kotlin/Java 最小示例、接口契约、代理协议、线程与取消、历史持久化及联调验收。
+
 ## 构建和测试
 
 需要 JDK 21，`JAVA_HOME` 指向该 JDK。Kotlin 版本为 2.1.21，构建使用仓库内的 Gradle Wrapper。
