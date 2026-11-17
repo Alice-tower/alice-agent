@@ -1,0 +1,15 @@
+.DS_Store
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+*.log
+.env
+.env.*
+!.env.example
+/data/
+/logs/
+/tmp/
+/vendor/pi/packages/ai/src/providers/data/
+/vendor/pi/packages/ai/src/providers/.model-generation-*/
+/vendor/pi/.artifacts/
