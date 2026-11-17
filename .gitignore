@@ -9,6 +9,7 @@ coverage/
 .env.*
 !.env.example
 /data/
+/secrets/
 /logs/
 /tmp/
 /vendor/pi/packages/ai/src/providers/data/

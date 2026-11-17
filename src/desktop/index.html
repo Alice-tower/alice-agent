@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Alice</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="setup-screen" class="setup-screen"><div class="setup-brand">✳ Alice</div><p>你的私人助理，连接你的后端。</p></div>
+  <dialog id="connection-dialog" data-testid="connection-dialog" aria-labelledby="connection-title">
+    <div class="dialog-symbol">✳</div>
+    <h1 id="connection-title">连接你的后端</h1>
+    <p class="dialog-description">Alice 将在后端处理任务并保存对话。</p>
+    <form id="connection-form">
+      <label for="backend-url">后端地址</label>
+      <input id="backend-url" data-testid="backend-url" type="url" value="http://127.0.0.1:4317" required spellcheck="false" autocomplete="off">
+      <label for="access-token">访问令牌</label>
+      <input id="access-token" data-testid="access-token" type="password" autocomplete="off" placeholder="输入后端访问令牌">
+      <p class="connection-hint">只在本机保存连接设置；访问令牌会加密保存。</p>
+      <p id="connection-error" data-testid="connection-error" role="alert" hidden></p>
+      <div class="dialog-actions"><button id="close-settings" type="button" hidden>返回对话</button><button id="connect" data-testid="connect" class="connect-button" type="submit">连接并进入</button></div>
+    </form>
+  </dialog>
+  <div id="workspace" data-testid="workspace" hidden>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">✳</span><div>Alice<span class="brand-subtitle">你的私人助理</span></div></div>
+    <button id="new-conversation" data-testid="new-conversation" class="new-conversation" disabled><span>＋</span> 新对话</button>
+    <div class="section-label">会话</div>
+    <nav id="conversation-list" data-testid="conversation-list" class="conversation-list" aria-label="会话列表"></nav>
+    <div class="connection-panel">
+      <button id="edit-connection" data-testid="edit-connection" class="connection-link"><span class="connection-dot"></span>后端设置 <span id="connection-status" data-testid="connection-status" data-state="disconnected">未连接</span></button>
+      <p id="connection-description">执行与数据保留在后端</p>
+    </div>
+  </aside>
+  <main>
+    <header class="main-header"><div><div class="eyebrow">WORKSPACE</div><h2 id="conversation-title">新的灵感，从这里开始</h2></div><span class="local-badge">你的后端 · 你的数据</span></header>
+    <div id="error" data-testid="error" role="alert" hidden></div>
+    <section id="messages" data-testid="messages" class="messages" aria-label="对话消息" aria-live="polite"></section>
+    <footer class="composer-area">
+      <div class="composer-top"><div class="model-controls"><select id="provider-select" data-testid="provider-select" aria-label="模型服务" disabled></select><span class="model-separator">/</span><select id="model-select" data-testid="model-select" aria-label="模型" disabled></select></div><span id="run-status" data-testid="run-status" class="run-status"></span></div>
+      <form id="message-form" class="composer">
+        <textarea id="message-input" data-testid="message-input" rows="3" placeholder="告诉 Alice，你想做些什么…" aria-label="输入消息" disabled></textarea>
+        <div class="composer-bottom"><span>Enter 发送 · Shift + Enter 换行</span><div><button id="cancel" data-testid="cancel" type="button" class="cancel-button" hidden>停止</button><button id="send" data-testid="send" type="submit" class="send-button" disabled>发送 <span>↑</span></button></div></div>
+      </form>
+      <p class="footer-note">工具默认操作后端所在的机器。关闭窗口不会停止后端任务。</p>
+    </footer>
+  </main>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "name": "alice-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@12.2.2",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "workspaces": [
+    "vendor/pi/packages/telemetry",
+    "vendor/pi/packages/schema",
+    "vendor/pi/packages/ai",
+    "vendor/pi/packages/agent"
+  ],
+  "scripts": {
+    "build:pi": "node scripts/build-pi.mjs",
+    "build": "npm run build:pi && tsc -p tsconfig.json && npm run build:desktop",
+    "check": "tsc --noEmit -p tsconfig.check.json",
+    "test": "node --test test/provider/*.test.ts test/runtime/*.test.ts test/backend/*.test.ts test/desktop/*.test.ts",
+    "test:ollama": "node --test test/integration/ollama.test.ts",
+    "build:desktop": "node scripts/build-desktop.mjs",
+    "start:backend": "node --env-file-if-exists=.env dist/backend/main.js",
+    "start:desktop": "electron dist/desktop/main.cjs",
+    "test:desktop": "node --test test/e2e/desktop.test.ts test/e2e/backend-switch.test.ts",
+    "setup:desktop": "node scripts/setup-desktop.mjs"
+  },
+  "dependencies": {
+    "@earendil-works/pi-agent-core": "1.5.2",
+    "@earendil-works/pi-ai": "1.5.2",
+    "@earendil-works/pi-schema": "1.5.2",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.19",
+    "electron": "45.3.3",
+    "esbuild": "0.28.2",
+    "playwright": "1.65.1",
+    "tar": "7.5.23",
+    "typescript": "7.0.2"
+  }
+}
